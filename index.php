@@ -217,7 +217,11 @@ function edititem(){
 function newItem (){
   $('#newItemModal').modal('hide')
   if($('#dropdownMenu1').val()!='' && $('#inputItem').val()!=''){//don't want it saved without category or item
-  var saveitem = {action:'insertitem',item:$('#inputItem').val(), category:$('#dropdownMenu1').val()};
+  var item=$('#inputItem').val()
+  item=item.replace("'","''")
+  var cat=$('#dropdownMenu1').val()
+  cat=cat.replace("'","''")
+  var saveitem = {action:'insertitem',item:item, category:cat};
   $.get("./functions.php",saveitem,datasaved);
   //console.log(saveitem)
   }
@@ -226,7 +230,9 @@ function newItem (){
 function newCategory (){
   $('#newCategoryModal').modal('hide')
   if($('#inputCategory').val()!=''){//don't want it saved without category
-  var savecat = {action:'addcategory',category:$('#inputCategory').val()};
+  var cat=$('#inputCategory').val()
+  cat=cat.replace("'","''")
+  var savecat = {action:'addcategory',category:cat};
   $.get("./functions.php",savecat,categorysaved);
   //console.log(savecat)
   }
