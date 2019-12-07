@@ -5,12 +5,14 @@ It can happily handle many using at once and saves the ticks on click events.
 Intended to be used on a phone.
 
 The previous list https://github.com/AffekeNommu/Listy-McListface is so much different from this I am starting a new repository.
-Complete rewrite using php, jquery, bootstrap, popper, toastr and datatables.
+Complete rewrite using php, jquery, bootstrap, popper, toastr, material icons and datatables.
+I have gone with hosted libraries and styles to keep it simple on the site.
 Could have gone with a framework like codeigniter but chose to do a claytons framework for _fun_.
 
 It has 2 files:
 * index.php - the view
 * functions.php - the model/controller
+The functions php is called with a value and there is a case that picks the correct function inside it. Technically a controller and we can call the functions the model.
 
 There are 2 tables in a database
 * list - where all items go
