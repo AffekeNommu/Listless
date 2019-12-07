@@ -1,4 +1,4 @@
-`<html lang="en">
+<html lang="en">
     <head>
       <title>Listless</title>
       <!--Javascript libraries and corresponding styles-->
@@ -22,6 +22,8 @@
       <!--Toastr-->
       <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+      <!--Material Icons-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <!--Make it display big on a phone-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style type="text/css"></style>
@@ -29,14 +31,14 @@
     <body>
       <h1>Listless</h1>
      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" onclick="loadCategories()" data-toggle="modal" data-target="#newItemModal">New</button>
-      <button type="button" class="btn btn-primary" onclick="removeTicked()">Remove</button>
-      <button type="button" class="btn btn-primary" onclick="undoRemoved()">Undo</button>
+      <button type="button" class="btn btn-primary" onclick="loadCategories()" data-toggle="modal" data-target="#newItemModal" rel="tooltip" data-placement="bottom" title="add item"><i class="material-icons">add</i></button>
+      <button type="button" class="btn btn-primary" onclick="removeTicked()" rel="tooltip" data-placement="bottom" title="remove ticked"><i class="material-icons">delete_sweep</i></button>
+      <button type="button" class="btn btn-primary" onclick="undoRemoved()" rel="tooltip" data-placement="bottom" title="undo remove"><i class="material-icons">undo</i></button>
       <div>
       <table class="table-responsive table-striped table-bordered table-condensed" id="tableID"></table>
       </div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">New Category</button>
-      <button type="button" class="btn btn-primary" onclick="selRemoveCategory()" data-toggle="modal" data-target="#delCategoryModal">Remove Category</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal" rel="tooltip" data-placement="bottom" title="add cat"><i class="material-icons">speaker_notes</i></button>
+      <button type="button" class="btn btn-primary" onclick="selRemoveCategory()" data-toggle="modal" data-target="#delCategoryModal" rel="tooltip" data-placement="bottom" title="del cat"><i class="material-icons">speaker_notes_off</i></button>
   <!-- Modal -->
   <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-labelledby="newItemModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -65,7 +67,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="newItem()" class="btn btn-primary">Save changes</button>
+          <button type="button" onclick="newItem()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="save changes"><i class="material-icons">save</i></button>
         </div>
       </div>
     </div>
@@ -75,7 +77,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="delCategoryModalLabel">Category</h5>
+          <h5 class="modal-title" id="delCategoryModalLabel">Delete Category</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -94,7 +96,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="removeCategory()" class="btn btn-primary">Remove Category</button>
+          <button type="button" onclick="removeCategory()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="remove category"><i class="material-icons">save</i></button>
         </div>
       </div>
     </div>
@@ -116,7 +118,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="newCategory()" class="btn btn-primary">Save changes</button>
+          <button type="button" onclick="newCategory()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="add category"><i class="material-icons">save</i></button>
         </div>
       </div>
     </div>
@@ -257,6 +259,8 @@ function datasaved (){
 $( document ).ready(function() {
   //errors to logfile pls
   $.fn.dataTable.ext.errMode = 'throw';
+  //start tooltips
+  $('[rel="tooltip"]').tooltip({trigger: "hover"});
   //now the js for the page can start
   toastr.info("welcome to Listless");
   listtable=$('#tableID').DataTable({
@@ -307,14 +311,14 @@ $( document ).ready(function() {
               //set checked in db
               $.get("./functions.php",{action:'tickitem', tick:'1', idlist:selid[0]},tickedRemoved);
 	           toastr.success('checked')
-	    }
+	          }
             if(seltick[0]==1){
-              //remove checked in db
-		    $.get("./functions.php",{action:'tickitem', tick:'0', idlist:selid[0]},tickedRemoved);
-		    toastr.success('unchecked')
+                //remove checked in db
+		            $.get("./functions.php",{action:'tickitem', tick:'0', idlist:selid[0]},tickedRemoved);
+		            toastr.success('unchecked')
             }
-	}
-    });
+	     }
+    })
 });
 //end of the page js
 </script>
