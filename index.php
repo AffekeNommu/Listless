@@ -31,14 +31,14 @@
     <body>
       <h1>Listless</h1>
      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" onclick="loadCategories()" data-toggle="modal" data-target="#newItemModal" rel="tooltip" data-placement="bottom" title="add item"><i class="material-icons">add</i></button>
-      <button type="button" class="btn btn-primary" onclick="removeTicked()" rel="tooltip" data-placement="bottom" title="remove ticked"><i class="material-icons">delete_sweep</i></button>
-      <button type="button" class="btn btn-primary" onclick="undoRemoved()" rel="tooltip" data-placement="bottom" title="undo remove"><i class="material-icons">undo</i></button>
+      <button type="button" class="btn btn-primary" onclick="loadCategories()" data-toggle="modal" data-target="#newItemModal" rel="tooltip" data-placement="bottom" title="add item" data-animation="true"><i class="material-icons">add</i></button>
+      <button type="button" class="btn btn-primary" onclick="removeTicked()" rel="tooltip" data-placement="bottom" title="remove ticked" data-animation="true"><i class="material-icons">delete_sweep</i></button>
+      <button type="button" class="btn btn-primary" onclick="undoRemoved()" rel="tooltip" data-placement="bottom" title="undo remove" data-animation="true"><i class="material-icons">undo</i></button>
       <div>
       <table class="table-responsive table-striped table-bordered table-condensed" id="tableID"></table>
       </div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal" rel="tooltip" data-placement="bottom" title="add cat"><i class="material-icons">speaker_notes</i></button>
-      <button type="button" class="btn btn-primary" onclick="selRemoveCategory()" data-toggle="modal" data-target="#delCategoryModal" rel="tooltip" data-placement="bottom" title="del cat"><i class="material-icons">speaker_notes_off</i></button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal" rel="tooltip" data-placement="bottom" title="add category" data-animation="true"><i class="material-icons">speaker_notes</i></button>
+      <button type="button" class="btn btn-primary" onclick="selRemoveCategory()" data-toggle="modal" data-target="#delCategoryModal" rel="tooltip" data-placement="bottom" title="delete category" data-animation="true"><i class="material-icons">speaker_notes_off</i></button>
   <!-- Modal -->
   <div class="modal fade" id="newItemModal" tabindex="-1" role="dialog" aria-labelledby="newItemModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="newItem()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="save changes"><i class="material-icons">save</i></button>
+          <button type="button" onclick="newItem()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="save changes" data-animation="true"><i class="material-icons">save</i></button>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="removeCategory()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="remove category"><i class="material-icons">save</i></button>
+          <button type="button" onclick="removeCategory()" class="btn btn-primary" rel="tooltip" data-placement="bottom" title="remove category" data-animation="true"><i class="material-icons">save</i></button>
         </div>
       </div>
     </div>
