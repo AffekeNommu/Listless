@@ -47,11 +47,13 @@ CREATE TABLE `list` (
 ```
 I have given them incrementing int as keys to see how many of each are created.
 The category in category has a unique constraint so that you do not add twice.
-You could also run a cleanup on the database by an event in MySql or scheduled SP in MSSql.
+I have the removeticked function actioning a cleanup for all stale items because my cloud provider has events disabled on MySql.
+Alternatively you could do this as an event in MySql or scheduled SP in MSSql.
 Something like:
 ```
 delete FROM test.list where display=0 and timestamp < DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL -1 day);
 ```
-would work well to keep data in check. I would do this myself but my cloud provider has events disabled on MySql.
+would also work well to keep data in check. 
+
 
 Namaste
