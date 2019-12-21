@@ -161,7 +161,7 @@ function tickitem(){//can set to 0 or 1
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
-  //Pretty straightforward, get post values and insert into database
+  //tick flag set on item in list table
   $idlist=$data["idlist"];
   $tick=$data["tick"];
   $sql = "UPDATE list SET checked='$tick' where idlist='$idlist'";
@@ -185,8 +185,14 @@ function removeticked(){
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   }
-  //Pretty straightforward, get post values and insert into database
+  //make the items that were ticked not display
   $sql = "UPDATE list set display=0 where checked=1";
+  if ($conn->query($sql) === TRUE) {
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  //remove items that have not been displayed for 3 days
+  $sql = "DELETE FROM list where display=0 and timestamp < DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL -3 DAY)";
   if ($conn->query($sql) === TRUE) {
   } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
