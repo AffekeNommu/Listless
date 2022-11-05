@@ -15,7 +15,7 @@ $GLOBALS['$dbname'] = "test";
         case 'removeticked': removeticked();break;
         case 'undoremove': undoremove();break;
         case 'deletecategory': deletecategory();break;
-        case 'edit': edit();break;
+        case 'edititem': edit();break;
 }
 
 function get(){
@@ -223,7 +223,27 @@ function undoremove(){
 }
 
 function edit(){
-//future expansion - when I can think of a clean way to select an item to edit
+  $data=$_GET;
+  // Create connection
+  $servername = $GLOBALS['$servername'];
+  $username = $GLOBALS['$username'];
+  $password = $GLOBALS['$password'];
+  $dbname = $GLOBALS['$dbname'];
+  $output=array();
+  $conn = new mysqli($servername, $username, $password, $dbname, 3306);
+  // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+  //Pretty straightforward, get post values and insert into database
+  $idlist=$data["idlist"];
+  $Item=$data["line"];
+  $Category=$data["category"];
+  $sql = "UPDATE list SET item='$Item', category='$Category' WHERE idlist='$idlist'";
+  if ($conn->query($sql) === TRUE) {
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $conn->close();
 }
-
 ?>
