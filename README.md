@@ -2,7 +2,7 @@
 
 This version has no need for a database. It stores the data in a pair of JSON files.
 It also can cope with multiple users.
-On first use or if you want to change lists you need to set the list ID.
+On first use or if you want to change lists you need to set the list ID. Each user could have a differnet ID or IDs.
 
 It has 2 files:
 * index.php - the view
@@ -22,6 +22,8 @@ Items can be displayed, checked off and removed from display.
 There is an edit toggle and an auto clear toggle.
 
 The JSON files are small but you might need to clean up unused lists eventually.
+
+I have this running in an Azure app service on PHP with no modifications.
 
 
 Enjoy!
