@@ -57,16 +57,13 @@ function get()
     //get the entry into an array
     $list = json_decode($list);
     //only show the display ones
-    foreach ($list as $index => $line) {
-      if ($list[$index]->display == "0" || $list[$index]->display == null) {
-        //cannot splice out the last entry so kill it
-        if (sizeof($list) == 1 && $list[0]->display == '0') {
-          $list = [];
-        } else {
-          //remove from array
-          array_splice($list, $index, 1);
-        }
-      }
+    if (sizeof($list) == 1 && $list[0]->display == '0') {
+      $list = [];
+    } else {
+      //remove from array
+      $list = array_values(array_filter($list, function($item) {
+        return $item->display != "0";
+      }));
     }
   } else {
     //file must be empty or missing so we need an array
